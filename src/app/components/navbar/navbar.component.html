@@ -1,0 +1,21 @@
+<header>
+    <nav class="flex mx-auto justify-between bg-green-600 p-6">
+       <div class="flex">
+        <p class="text-xl font-bold">Bikker</p>
+       </div>
+
+   
+        <ul class="flex gap-8">
+            @if(loggIn){
+                <li>Home</li>
+                <li>Rents</li>
+                <li>Bikes</li>
+                <li>Salir</li>
+            }
+            @else{
+                <li>log in</li>
+            }
+            
+        </ul>
+    </nav>
+</header>
