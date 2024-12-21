@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators,ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -11,17 +12,20 @@ import { RouterLink } from '@angular/router';
 
 })
 export class LoginComponent {
-    emailSend:string = '';
-    passwordSend:string = '';
+    
     logInForm: FormGroup;
+    authService: AuthService;
 
-    constructor(){
+    constructor(authService: AuthService){
+
+        this.authService = authService;
+
         this.logInForm = new FormGroup({
-            email: new FormControl(this.emailSend,[
+            email: new FormControl('',[
                 Validators.required,
                 Validators.email
             ]),
-            password: new FormControl(this.passwordSend,[
+            password: new FormControl('',[
                 Validators.minLength(8)
             ])
         })
@@ -37,7 +41,10 @@ export class LoginComponent {
     }
     
     logIn(){
+        let emailSend = this.email;
+        let passwordSend = this.password;
 
+        let response = this.authService.logIn(emailSend?.value,passwordSend?.value)
     }
 
 }

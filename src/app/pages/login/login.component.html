@@ -40,7 +40,8 @@
                 }
 
             </form>
-            <button [disabled]="!logInForm.valid"  
+            <button [disabled]="!logInForm.valid" 
+            (click) = "logIn()" 
             [ngClass]="!logInForm.valid ? 'border-2 bg-green-600 p-4 rounded-xl': 'border-2 bg-green-600 p-4 rounded-xl hover:bg-white hover:text-green-600 hover:border-green-600'"
             >Log in</button>
             <p> do you not have an account? <a routerLink="/register">Sign Up</a></p>   
