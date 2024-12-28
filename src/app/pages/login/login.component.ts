@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators,ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { catchError } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -44,7 +45,13 @@ export class LoginComponent {
         let emailSend = this.email;
         let passwordSend = this.password;
 
-        let response = this.authService.logIn(emailSend?.value,passwordSend?.value)
+        this.authService.logIn(emailSend?.value,passwordSend?.value)
+        .pipe(
+            catchError((error)=> {
+                console.log(error)
+                throw error;
+            })
+        ).subscribe(response => console.log(response))
     }
 
 }
