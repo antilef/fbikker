@@ -38,6 +38,9 @@
                         <p>password is required</p>
                     } -->
                 }
+                @if(errorMessage){
+                    <p class="text-red-400">{{errorMessage}} </p>
+                }
 
             </form>
             <button [disabled]="!logInForm.valid" 

@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators,ReactiveFormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { catchError } from 'rxjs';
+
 
 @Component({
   selector: 'app-login',
@@ -16,8 +16,9 @@ export class LoginComponent {
     
     logInForm: FormGroup;
     authService: AuthService;
+    errorMessage: string = '';
 
-    constructor(authService: AuthService){
+    constructor(authService: AuthService, private router: Router){
 
         this.authService = authService;
 
@@ -44,14 +45,22 @@ export class LoginComponent {
     logIn(){
         let emailSend = this.email;
         let passwordSend = this.password;
-
         this.authService.logIn(emailSend?.value,passwordSend?.value)
-        .pipe(
-            catchError((error)=> {
-                console.log(error)
-                throw error;
-            })
-        ).subscribe(response => console.log(response))
+        .subscribe({
+            next:(response) => {
+                
+                localStorage.setItem('token',response.token)
+                localStorage.setItem('expiredIn',response.expiredIn.toString())
+                this.router.navigate(['/home'])
+                
+            },
+            error:(error)=> {
+                this.errorMessage = 'Error at login'
+            }
+        })
+       
+        
+        
     }
 
 }
