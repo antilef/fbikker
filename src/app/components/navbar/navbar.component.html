@@ -10,7 +10,9 @@
                 <li>Home</li>
                 <li>Rents</li>
                 <li>Bikes</li>
-                <li>Log out</li>
+                <li >
+                    <button (click)="onLogOut($event)">Log out</button>
+                </li>
             }
             @else{
                 <li><a routerLink="/register">Sign up</a></li>

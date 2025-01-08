@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -8,5 +9,18 @@ import { RouterLink } from '@angular/router';
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
-  loggIn:boolean = false;
+
+  loggIn:boolean;
+
+  constructor(private authService: AuthService, private router:Router){
+    this.loggIn = this.authService.isAuthenticated()
+  }
+
+  onLogOut(event: any){
+    console.log('logOut')
+    localStorage.removeItem('token')
+    localStorage.removeItem('expiredIn')
+    this.loggIn = false
+    this.router.navigate(['/'])
+  }
 }

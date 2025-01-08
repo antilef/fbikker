@@ -33,4 +33,10 @@ export class AuthService {
 
 
   }
+
+  isAuthenticated(){
+    let token = localStorage.getItem('token')
+    return token!== null && token !== undefined;
+  }
+  
 }
