@@ -10,10 +10,10 @@ import { AuthService } from '../../services/auth.service';
 })
 export class NavbarComponent {
 
-  loggIn:boolean;
+  loggIn:boolean= true;
 
   constructor(private authService: AuthService, private router:Router){
-    this.loggIn = this.authService.isAuthenticated()
+    //this.loggIn = this.authService.isAuthenticated()
   }
 
   onLogOut(event: any){
