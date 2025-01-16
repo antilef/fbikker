@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators,ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { User } from '../../model/entity.interface';
 
 
 @Component({
@@ -51,6 +52,14 @@ export class LoginComponent {
                 
                 localStorage.setItem('token',response.token)
                 localStorage.setItem('expiredIn',response.expiredIn.toString())
+                let {userId,email,firstName,lastName} = response
+                this.authService.user = {
+                    id: userId,
+                    email,
+                    firstName,
+                    lastName
+                } 
+            
                 this.router.navigate(['/home'])
                 
             },
