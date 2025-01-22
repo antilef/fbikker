@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AddRentButtonComponent } from '../../components/add-rent-button/add-rent-button.component';
+import { BikeService } from '../../services/api/bike.service';
+import { Bike } from '../../model/entity.interface';
 
 @Component({
   selector: 'app-rents',
@@ -9,4 +11,5 @@ import { AddRentButtonComponent } from '../../components/add-rent-button/add-ren
 })
 export class RentsComponent {
   name: string = "Rent"
+
 }
