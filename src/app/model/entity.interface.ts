@@ -7,12 +7,15 @@ export interface User {
 
 
 export interface Bike {
+    id: number,
     serial: string,
-    type: string,
     brand: string,
+    bikeType: string,
     color: string,
     model: string,
-    size: string
+    size: string,
+    actualRentId: string,
+    available: boolean
 }
 
 export interface Rent {
