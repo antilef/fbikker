@@ -25,6 +25,8 @@ export class AuthService {
     lastName: "",
   };
 
+  private _token: string = '';
+
   constructor(private http: HttpClient) { }
 
   set user(user: User){
@@ -32,6 +34,15 @@ export class AuthService {
   }
   get user(){
     return this._user;
+  }
+
+  set token(token: string){
+    if(token != undefined){
+      this._token = token
+    }
+  }
+  get token(){
+    return this._token
   }
 
   logIn(email: string, password: string): Observable<LoginResponse>{
